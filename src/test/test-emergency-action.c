@@ -38,6 +38,14 @@ TEST(parse_emergency_action) {
         assert_se(parse_emergency_action("exit-force", true, &x) == 0);
         assert_se(parse_emergency_action("exit-forcee", true, &x) == -EINVAL);
         assert_se(x == EMERGENCY_ACTION_EXIT_FORCE);
+        assert_se(parse_emergency_action("kexec", true, &x) == 0);
+        assert_se(parse_emergency_action("kexec-force", true, &x) == 0);
+        assert_se(parse_emergency_action("kexec-forcee", true, &x) == -EINVAL);
+        assert_se(x == EMERGENCY_ACTION_KEXEC_FORCE);
+        assert_se(parse_emergency_action("halt", true, &x) == 0);
+        assert_se(parse_emergency_action("halt-force", true, &x) == 0);
+        assert_se(parse_emergency_action("halt-forcee", true, &x) == -EINVAL);
+        assert_se(x == EMERGENCY_ACTION_HALT_FORCE);
 }
 
 DEFINE_TEST_MAIN(LOG_INFO);
